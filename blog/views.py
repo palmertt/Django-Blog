@@ -1,5 +1,9 @@
-from django.views.generic import TemplateView
+from django.shortcuts import redirect, render
+from .models import Post
 
 # Create your views here.
-class HomeView(TemplateView):
-    template_name = "blog/index.html"
+def home(request):
+    context = {
+        'posts': Post.objects.all()
+    }
+    return render(request, 'blog/index.html', context)
