@@ -3,9 +3,14 @@
 {% block title %}Django Blog - Register{% endblock title %}
 
 {% block body %}
-<form class="form-group" method="post">
-	{% csrf_token %} 
-    {{ form|crispy }}
-	<button type="button" class="btn btn-secondary">Submit</button>
-</form>
+<div class="container">
+    <div class="shadow-lg p-3 mb-5 mt-5 bg-white rounded">
+        <form class="form-group" method="post">
+	        {% csrf_token %} 
+            {{ form|crispy }}
+            <hr>
+	        <button type="submit" class="btn btn-primary">Create Account</button>
+        </form>
+    </div>
+</div>
 {% endblock body %}

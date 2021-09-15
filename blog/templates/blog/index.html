@@ -28,9 +28,12 @@
                         </li>
                     </ol>
                     <hr>
-                    <p class="mt-3"><a href=""><strong>Login</strong></a> or <a href="{% url 'register' %}"><strong>Register</strong></a> Today</p>
+                    {% if user.is_authenticated %}
+                        <p class="mt-3"><a href="{% url 'profile' %}"><strong>Profile</strong></a> or <a href="{% url 'logout' %}"><strong>Logout</strong></a></p>
+                    {% else %}
+                        <p class="mt-3"><a href="{% url 'login' %}"><strong>Login</strong></a> or <a href="{% url 'register' %}"><strong>Register</strong></a> Today</p>
+                    {% endif %}
                 </div>
-
             </div>
         </div>
     </div>

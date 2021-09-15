@@ -17,7 +17,7 @@
 		<header>
 			<nav class="navbar navbar-dark opacity-50 navbar-background">
 				<div class="container-fluid">
-					<a class="navbar-brand">Django Blog</a>
+					<a class="navbar-brand" href="{% url 'index' %}">Django Blog</a>
 					<form class="d-flex">
 						<input
 							class="form-control me-2"
@@ -25,13 +25,20 @@
 							placeholder="Search"
 							aria-label="Search"
 						/>
-						<button class="btn btn-light" type="submit">
+						<button class="btn btn-primary" type="submit">
 							Search
 						</button>
 					</form>
 				</div>
 			</nav>
 		</header>
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-{{ message.tags }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
 		{% block body %}{% endblock body %} {% load static %}
 		<script
 			src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
