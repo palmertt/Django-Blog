@@ -1,22 +1,18 @@
-{% extends 'base.html' %}
-{% block title %}Django Blog - {{ object.title }}{% endblock title %}
+{% extends 'base.html' %} 
+{% load crispy_forms_tags %}
+{% block title %}Django Blog - Create Post{% endblock title %}
 
 {% block body %}
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-8 col-lg-8">
             <div class="shadow-lg p-3 mb-5 mt-5 bg-white rounded">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="mt-1">{{ object.title }}</h5>
-                    </div>
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>{{ object.content }}</p>
-                            <small class="blockquote-footer">{{ object.author }} on {{ object.date_posted|date:"F d, Y" }}</small>
-                        </blockquote>
-                    </div>
-                </div>
+                <form class="form-group" method="post">
+                    <legend class="border-bottom mb-4">Post</legend>
+	                {% csrf_token %} 
+                    {{ form|crispy }}
+	                <button type="submit" class="btn btn-primary mt-4">Create</button>
+                </form>
             </div>
         </div>
         <div class="col-sm-12 col-md-4 col-lg-4">
