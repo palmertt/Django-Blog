@@ -3,3 +3,8 @@
 
 ## What would I change doing it again? (I will add this changes in a later date)
 1. The number one thing I would change is the fact that the search bar doesn't work on every page, only on the home page. I would also change the way that the pagination menu bar looks. Lastly, I should have added the ability for posts to displayed on the author's profile page.
+
+## Technologies Used
+1. Django & pip packages
+2. HTML & CSS
+3. Bootstrap
