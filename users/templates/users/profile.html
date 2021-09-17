@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block title %}Django Blog - {{ user.username }}{% endblock title %}
 
 {% block body %}
@@ -15,6 +16,16 @@
                         <p class="text-secondary">{{ user.email }}</p>
                     </div> 
                 </div> 
+            </div>
+            <div class="shadow-lg p-3 mb-5 mt-5 bg-white rounded">
+                <form class="form-group" method="post" enctype="multipart/form-data">
+                    <legend class="border-bottom mb-4">Update Profile</legend>
+	                {% csrf_token %} 
+                    {{ user_form|crispy }}
+                    {{ profile_form|crispy }}
+                    <hr>
+	                <button type="submit" class="btn btn-primary">Update</button>
+                </form>
             </div>
         </div>
         <div class="col-sm-12 col-md-4 col-lg-4">
