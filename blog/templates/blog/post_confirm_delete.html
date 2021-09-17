@@ -1,6 +1,5 @@
 {% extends 'base.html' %} 
-{% load crispy_forms_tags %}
-{% block title %}Django Blog - Post{% endblock title %}
+{% block title %}Django Blog - Delete Post{% endblock title %}
 
 {% block body %}
 <div class="container">
@@ -8,10 +7,11 @@
         <div class="col-sm-12 col-md-8 col-lg-8">
             <div class="shadow-lg p-3 mb-5 mt-5 bg-white rounded">
                 <form class="form-group" method="post">
-                    <legend class="border-bottom mb-4">Post</legend>
+                    <legend class="border-bottom mb-4">Delete Post</legend>
+                    <h4>Are you sure you want to delete the post "{{ object.title }}"</h4>
 	                {% csrf_token %} 
-                    {{ form|crispy }}
-	                <button type="submit" class="btn btn-primary mt-4">Create</button>
+	                <button type="submit" class="btn btn-danger mt-4">Delete</button>
+                    <a href="{% url 'detail' object.id %}" class="btn btn-secondary mt-4">Cancel</a>
                 </form>
             </div>
         </div>

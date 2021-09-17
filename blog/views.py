@@ -1,7 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 from django.urls.base import reverse_lazy
 from .models import Post
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -31,15 +31,27 @@ class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, CreateView):
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = Post
     fields = ['title', 'content']
     success_url = reverse_lazy('index')
-    success_message = 'Post Created Successfully!'
+    success_message = 'Post Updated Successfully!'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageMixin, DeleteView):
+    model = Post
+    success_url = reverse_lazy('index')
+    success_message = 'Post Successfully Deleted!'
 
     def test_func(self):
         post = self.get_object()
