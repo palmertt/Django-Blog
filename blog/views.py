@@ -19,6 +19,14 @@ class PostListView(ListView):
     ordering = ['-date_posted']
     paginate_by = 4
 
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            object_list = self.model.objects.filter(title__icontains=query)
+        else:
+            object_list = self.model.objects.all()
+        return object_list
+
 class PostDetailView(DetailView):
     model = Post
 

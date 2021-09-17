@@ -18,12 +18,14 @@
 			<nav class="navbar navbar-dark opacity-50 navbar-background">
 				<div class="container-fluid">
 					<a class="navbar-brand" href="{% url 'index' %}">Django Blog</a>
-					<form class="d-flex">
+					<form class="d-flex" method="GET">
 						<input
 							class="form-control me-2"
 							type="search"
 							placeholder="Search"
 							aria-label="Search"
+							name="query"
+							value="{{ request.GET.query }}"
 						/>
 						<button class="btn btn-primary" type="submit">
 							Search
