@@ -17,6 +17,9 @@
                         </blockquote>
                     </div>
                 </div>
+                {% if object.author == user %}
+                    <a href="{% url 'update' object.id %}" class="btn btn-primary mt-2">Update</a>&nbsp;&nbsp;&nbsp;<a href="{% url 'delete' object.id %}" class="btn btn-secondary mt-2">Delete</a> 
+                {% endif %}
             </div>
         </div>
         <div class="col-sm-12 col-md-4 col-lg-4">
